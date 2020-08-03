@@ -1,10 +1,11 @@
 import React from 'react';
 import Tabledata from "./Tabledata"
 
-const Table = () => {
+const Table = (props) => {
+  console.log(props.results);
     return (
         <div>
-            <table class="table table-bordered table-image">
+            <table className="table table-bordered table-image">
   <thead>
     <tr>
       
@@ -17,9 +18,11 @@ const Table = () => {
     </tr>
   </thead>
   <tbody>
-    <Tabledata />
-    <Tabledata />
-    <Tabledata />
+    {props.results.map(result => {
+      return <Tabledata person={result} key={result.login.uuid}/>
+    })}
+    
+  
    
    
   </tbody>

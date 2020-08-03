@@ -1,21 +1,22 @@
 import React from "react";
 
 
-const Tabledata = () => {
+const Tabledata = (props) => {
+  console.log("tabledate:", props);
   return (
-    <tr>
-      <td class="w-25">
+    <tr key={props.person.login.uuid}>
+      <td className="w-25">
         <img
-          src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg"
-          class="img-fluid img-thumbnail"
+          src={props.person.picture.thumbnail}
+          className="img-fluid img-thumbnail"
           alt="Sheep"
         />
       </td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>MarkOtto@gmail.com</td>
-      <td>4567 Crabapple Tree Drive</td>
-      <td>777-777-7777</td>
+      <td>{props.person.name.first}</td>
+      <td>{props.person.name.last}</td>
+      <td>{props.person.email}</td>
+      <td>{props.person.location.street.number} {props.person.location.street.name}</td>
+      <td>{props.person.phone}</td>
     </tr>
   );
 };
