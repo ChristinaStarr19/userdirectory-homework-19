@@ -28,7 +28,7 @@ It is built using React components and customized based on acceptance criteria p
 
 Link to deployed application:
 
-https://christinastarr19.github.io/gt-web-apis-code-quiz-homework-04/
+https://christinastarr19.github.io/userdirectory-homework-19/
 
 ## Credits
 
