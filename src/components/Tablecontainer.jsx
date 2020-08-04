@@ -6,7 +6,7 @@ class Tablecontainer extends Component {
   state = {
     results: [],
     sortResults: [],
-    filterResults: [],
+    search: "",
   };
 
   componentDidMount() {
@@ -14,7 +14,7 @@ class Tablecontainer extends Component {
     axios.get("https://randomuser.me/api/?results=50").then((results) => {
       this.setState({ results: results.data.results });
       console.log("check api:", this.state.results);
-    //   this.sortPeople();
+      //   this.sortPeople();
     });
   }
 
@@ -27,13 +27,52 @@ class Tablecontainer extends Component {
 
       return 0;
     }
-    this.setState({sortResults:this.state.results.sort(compare)});
-    console.log(this.state.sortResults);
+    this.setState({ sortResults: this.state.results.sort(compare) });
+  };
+
+  handleInputChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({
+        [name]: value,
+    });
+  };
+
+  handleSubmit = (e) => {
+      e.preventDefault();
+      this.filterPeople();
+  }
+
+  filterPeople = ()  =>  {
+      const searchName = this.state.search.toLowerCase();
+     this.setState({ results: this.state.results.filter((person) =>
+        person.name.last.toLowerCase().includes(searchName)
+        ),
+    }); 
+
   };
 
   render() {
     return (
       <div>
+        <div className="container">
+          <div className="row">
+            <div className="col-4">
+              <button onClick={this.sortPeople}>Sort Alphabetically</button>
+            </div>
+            <div className="col-4">
+                <form onSubmit={this.handleSubmit}>
+              <input
+                type="textarea"
+                className="form-control"
+                placeholder="Search By Last Name"
+                name="search"
+                value={this.state.search}
+                onChange={this.handleInputChange}
+              ></input>
+              </form>
+            </div>
+          </div>
+        </div>
         <Table results={this.state.results} />
       </div>
     );

@@ -12,8 +12,7 @@ const Tabledata = (props) => {
           alt="Sheep"
         />
       </td>
-      <td>{props.person.name.first}</td>
-      <td>{props.person.name.last}</td>
+      <td>{props.person.name.first} {props.person.name.last}</td>
       <td>{props.person.email}</td>
       <td>{props.person.location.street.number} {props.person.location.street.name}</td>
       <td>{props.person.phone}</td>
